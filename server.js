@@ -96,6 +96,14 @@ setInterval(async function() {
   let time=new Date();
   sensors.forEach((sensor) => {saveDataToMongoDB(sensorModelMap.get(sensor), sensor,time);});
 }, 60*1000);
+app.get("/test",(req,res)=>{
+  res.status(200).json(
+    {
+      "msg":"working fine",
+      "status":"success"
+    }
+  );
+});
 app.post("/:sensor/gethistoricaldata",async function(req,res)
 {
   let{startDate,endDate}=req.body;
