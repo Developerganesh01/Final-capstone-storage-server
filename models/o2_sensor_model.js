@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const oxygenschema=new mongoose.Schema({
+const schema=new mongoose.Schema({
     current_time:{
         type:Date,
         default:Date.now()
@@ -9,5 +9,5 @@ const oxygenschema=new mongoose.Schema({
         required:true
     }
 });
-const Oxygenmodel=mongoose.model('Oxygenmodel',oxygenschema);
-module.exports=Oxygenmodel;
+const o2_sensor_model=mongoose.model('o2_sensor_model',schema);
+module.exports=o2_sensor_model;

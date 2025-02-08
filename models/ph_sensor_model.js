@@ -1,13 +1,12 @@
 const mongoose=require('mongoose');
-const tdsschema=new mongoose.Schema({
+const phschema=new mongoose.Schema({
     current_time:{
         type:Date,
-        default:Date.now()
     },
     value:{
         type:Number,
         required:true
     }
 });
-const Tdsmodel=mongoose.model('Tdsmodel',tdsschema);
-module.exports=Tdsmodel;
+const ph_sensor_model=mongoose.model('ph_sensor_model',phschema);
+module.exports=ph_sensor_model;

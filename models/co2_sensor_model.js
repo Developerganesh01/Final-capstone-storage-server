@@ -9,5 +9,5 @@ const co2schema=new mongoose.Schema({
         required:true
     }
 });
-const Co2model=mongoose.model('Co2model',co2schema);
-module.exports=Co2model;
+const co2_sensor_model=mongoose.model('co2_sensor_model',co2schema);
+module.exports=co2_sensor_model;

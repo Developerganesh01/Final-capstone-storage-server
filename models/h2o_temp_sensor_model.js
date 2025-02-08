@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const phschema=new mongoose.Schema({
+const schema=new mongoose.Schema({
     current_time:{
         type:Date,
         default:Date.now()
@@ -9,5 +9,5 @@ const phschema=new mongoose.Schema({
         required:true
     }
 });
-const Phmodel=mongoose.model('Phmodel',phschema);
-module.exports=Phmodel;
+const h2o_temp_sensor_model=mongoose.model('h2o_temp_sensor_model',schema);
+module.exports=h2o_temp_sensor_model;

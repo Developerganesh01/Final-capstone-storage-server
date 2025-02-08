@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const temperatureschema=new mongoose.Schema({
+const schema=new mongoose.Schema({
     current_time:{
         type:Date,
         default:Date.now()
@@ -9,5 +9,5 @@ const temperatureschema=new mongoose.Schema({
         required:true
     }
 });
-const Temperaturemodel=mongoose.model('Temperaturemodel',temperatureschema);
-module.exports=Temperaturemodel;
+const pressure_sensor_model=mongoose.model('pressure_sensor_model',schema);
+module.exports=pressure_sensor_model;

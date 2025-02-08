@@ -1,6 +1,5 @@
-const express=require('express');
 const mongoose=require('mongoose');
-const ldrschema=new mongoose.Schema({
+const schema=new mongoose.Schema({
     current_time:{
         type:Date,
         default:Date.now()
@@ -9,6 +8,6 @@ const ldrschema=new mongoose.Schema({
         type:Number,
         required:true
     }
-})
-const Ldrmodel=mongoose.model('Ldrmodel',ldrschema);
-module.exports=Ldrmodel;
+});
+const ec_sensor_model=mongoose.model('ec_sensor_model',schema);
+module.exports=ec_sensor_model;

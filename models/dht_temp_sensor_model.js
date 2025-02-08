@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const barometerschema=new mongoose.Schema({
+const schema=new mongoose.Schema({
     current_time:{
         type:Date,
         default:Date.now()
@@ -9,5 +9,5 @@ const barometerschema=new mongoose.Schema({
         required:true
     }
 });
-const Barometermodel=mongoose.model('Barometermodel',barometerschema);
-module.exports=Barometermodel;
+const dht_temp_sensor_model=mongoose.model('dht_temp_sensor_model',schema);
+module.exports=dht_temp_sensor_model;

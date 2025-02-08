@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const ultrasonicschema=new mongoose.Schema({
+const schema=new mongoose.Schema({
     current_time:{
         type:Date,
         default:Date.now()
@@ -9,5 +9,5 @@ const ultrasonicschema=new mongoose.Schema({
         required:true
     }
 });
-const Ultrasonicmodel=mongoose.model('Ultrasonicmodel',ultrasonicschema);
-module.exports=Ultrasonicmodel;
+const ldr_analog_sensor_model=mongoose.model('ldr_analog_sensor_model',schema);
+module.exports=ldr_analog_sensor_model;
