@@ -53,9 +53,9 @@ const tds_sensor_model=require("./models/tds_sensor_model");
 
 const saveDataToMongoDB=async function(model,firebaseRTDBPath,time)
 {
-  if(firebaseRTDBPath==="ph_sensor"){
-    console.log(`starts at ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`);
-  }
+  // if(firebaseRTDBPath==="ph_sensor"){
+  //   console.log(`starts at ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`);
+  // }
   const sensorRef=ref.child(firebaseRTDBPath);
   const snapshot=await sensorRef.once('value');
   const dataObj=await snapshot.val();
@@ -67,10 +67,10 @@ const saveDataToMongoDB=async function(model,firebaseRTDBPath,time)
       current_time:time
     });
     await doc.save();
-    if(firebaseRTDBPath==="ph_sensor"){
-      time=new Date();
-      console.log(`ends at ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`);
-    }
+    // if(firebaseRTDBPath==="ph_sensor"){
+    //   time=new Date();
+    //   console.log(`ends at ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`);
+    // }
   }
 }
 const sensors=['ph_sensor',"tds_sensor","h2o_temp_sensor","ec_sensor","ldr_analog","light_intensity_bh1750","light_intensity_tsl2591",
@@ -95,7 +95,7 @@ const sensorModelMap = new Map([
 setInterval(async function() {
   let time=new Date();
   sensors.forEach((sensor) => {saveDataToMongoDB(sensorModelMap.get(sensor), sensor,time);});
-}, 60*1000);
+}, process.env.TIME_INTERVAL_FOR_SAVE);
 app.get("/test",(req,res)=>{
   res.status(200).json(
     {
