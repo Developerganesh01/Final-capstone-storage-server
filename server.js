@@ -104,25 +104,76 @@ app.get("/test",(req,res)=>{
     }
   );
 });
+// app.get()//get models
 app.post("/:sensor/gethistoricaldata",async function(req,res)
 {
-  let{startDate,endDate}=req.body;
+  const {startDate,endDate}=req.body;
   const {sensor}=req.params;
-  startDate=new Date(startDate);
-  endDate=new Date(endDate);
-  startDate = new Date(startDate.toISOString());
-  endDate = new Date(endDate.toISOString());
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  // startDate = new Date(startDate.toISOString());
+  // endDate = new Date(endDate.toISOString());
   if(!sensorModelMap.has(sensor)){
     res.status(401).json({
       "msg":"failed: Model corresponding to sensor not found",
       "obj":[]
     })
   }
-  const arrObj=await sensorModelMap.get(sensor).find({current_time:{$gte:startDate,$lte:endDate}}).sort({current_time:-1});
+  const arrObj=await sensorModelMap.get(sensor).find({current_time:{$gte:start,$lte:end}}).sort({current_time:-1});
   res.status(200).json({
     "msg":"successful",
     "obj":arrObj
   })
+  // try{
+  //   let ct=0;
+  //   const data=await sensorModelMap.get(sensor).find().sort({"current_time":-1});
+  //   console.log(data.length);
+  //   const tempArr = [];
+  //   for(let idx = 0; idx < data.length; idx++)
+  //   {
+  //     const obj = data[idx];
+  //     const current = new Date(obj.current_time);
+  //     const epochStart = start.getTime();
+  //     const epochEnd = end.getTime();
+  //     const epochCurrent = current.getTime();
+  //     if(idx === 2819 || idx === 2820){
+  //       console.log("-----------------------------------------",idx);
+  //       console.log("epochStart : ",epochStart);
+  //       console.log("epochEnd : ",epochEnd);
+  //       console.log("epochCurrent : ",epochCurrent);
+  //     }
+      
+  //     if(epochCurrent >= epochStart && epochCurrent <= epochEnd) 
+  //     {
+  //       console.log("Condition truth for idx : ",idx);
+  //       tempArr.push(obj);
+  //     }
+  //   }
+  //   // const arrObj = data.filter((obj, idx) => {
+  //   //   const current = new Date(obj.current_time);
+  //   //   if (idx < 5) {
+  //   //     tempArr.push(obj)
+  //   //     console.log("Start:", start, "End:", end, "Current:", current);
+  //   //   }
+  //   //   return current >= start && current <= end;
+  //   // });
+  //   console.log("tempArr : ",tempArr.length)
+  //   res.status(200).json({
+  //     msg: "successful",
+  //     obj: tempArr
+  //   })
+
+  // }
+  // catch(err)
+  // {
+  //   console.log("mongo error",err);
+  //   res.status(500).json({
+  //     "msg":"db fail"
+  //   });
+  // }
+
+
+
 })
 
 
